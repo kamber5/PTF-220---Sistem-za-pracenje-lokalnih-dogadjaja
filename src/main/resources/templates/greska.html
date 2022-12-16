@@ -3,21 +3,26 @@
 <head>
 	<meta charset="ISO-8859-1">
 	<title>Login Success</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
 	<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
 	<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-	<div>
-        <div class="jumbotron text-center">
+	<div class="jumbotron text-center">
+        <div>
             <form th:action="@{/logout}" method="post">
                 <p>
                     Welcome <b>[[${#request.userPrincipal.principal.username}]]</b>
                 </p>
-				<h3><a th:href="@{/admin}">Admin Panel</a></h3>
                 <input type="submit" value="Sign Out" />
             </form>
         </div>
+		<div allign="center">
+            <br><h1>Nemaš dozvolu da budeš ovdje. Ajmo iš na početnu stranicu</h1>
+            <h3><a th:href="@{/home}">Početna stranica</a></h3>
+
+        </div>
+
 	</div>
 	
 </body>

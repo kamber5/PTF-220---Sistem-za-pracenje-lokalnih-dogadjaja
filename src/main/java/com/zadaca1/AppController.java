@@ -19,6 +19,11 @@ public class AppController {
 	public String viewHomePage() {
 		return "index";
 	}
+
+	@GetMapping("/home-prijava")
+	public String homePrijava() {
+		return "index";
+	}
 	
 	@GetMapping("/register")
 	public String showRegistrationForm(Model model) {
