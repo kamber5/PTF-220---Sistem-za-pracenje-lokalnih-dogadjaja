@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class AppController {
 
 	@Autowired
-	private UserRepository userRepo;
+	private UserRepository userRepository;
 	
 	@GetMapping("")
 	public String viewHomePage() {
@@ -28,21 +28,31 @@ public class AppController {
 	}
 	
 	@PostMapping("/process_register")
-	public String processRegister(User user) {
+	public String processRegister(User user, Role role) {
 		BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String encodedPassword = passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
+        user.setEnabled(true);
+        role.setID(1);
 		
-		userRepo.save(user);
+		userRepository.save(user);
 		
 		return "register_success";
 	}
-	
-	@GetMapping("/users")
-	public String listUsers(Model model) {
-		List<User> listUsers = userRepo.findAll();
-		model.addAttribute("listUsers", listUsers);
-		
-		return "users";
+
+    @GetMapping("/home")
+	public String homePage() {
+		return "home";
 	}
+	
+	@GetMapping("/admin")
+	public String listUsers() {
+		return "admin";
+	}
+
+    @GetMapping("/greska")
+	public String greska() {
+		return "greska";
+	}
+
 }
